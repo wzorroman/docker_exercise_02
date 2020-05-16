@@ -74,3 +74,31 @@
     ```sh
     $ docker-compose up -d --build
     ```
+--
+ # Comandos
+ - You can check that the volume was created as well by running:
+    ```sh
+    $ docker volume inspect django-on-docker_postgres_data
+    ```
+ - Construir los contenedores
+   ```sh
+    $ docker-compose -f docker-compose.prod.yml up -d --build
+    ```
+- Correr las migraciones
+   ```sh
+    $ docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+    ```
+- Recoger los static
+   ```sh
+    $ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
+    ```
+ - Verificar el bash del contenedor:
+    ```sh
+    $ docker exec -ti ***CONTAINER_ID*** sh
+    ```
+
+---
+ # Test it out one final time:
+
+  - Upload an image at http://localhost:1337/.
+  - Then, view the image at http://localhost:1337/mediafiles/IMAGE_FILE_NAME.
